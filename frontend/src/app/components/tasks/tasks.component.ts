@@ -9,7 +9,7 @@ import {Router}                      from '@angular/router';
 })
 export class TasksComponent implements OnInit {
 
-  tasks = [0];
+  tasks =[];
   constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit() {

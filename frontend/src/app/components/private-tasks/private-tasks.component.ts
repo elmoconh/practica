@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./private-tasks.component.css']
 })
 export class PrivateTasksComponent implements OnInit {
-
+  user : {id: string};
   privateTasks = [];
   constructor(
     private taskService: TaskService, 
@@ -20,8 +20,9 @@ export class PrivateTasksComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(id)
+    this.user = {
+      id: this.activatedRoute.snapshot.params.id
+    };
     this.taskService.getPrivateTasks()
       .subscribe(
         res => this.privateTasks = res,

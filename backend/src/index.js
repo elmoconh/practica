@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
+const bodyParser = require('body-parser');
+
+const app = express().use(bodyParser.json());
 
 require('./database');
 

@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 const User = require('../models/User');
+const Question = require('../models/Questions');
 
 const jwt = require('jsonwebtoken');
 
@@ -29,6 +30,15 @@ router.post('/signin', async (req, res) => {
     return res.status(200).json({token});
 });
 
+router.get('/questions', (req,res)=>{
+    Question.find({}).exec(function(err,questions){
+        if(err){
+            console.log('no funciona'); 
+        }else{
+            res.json(questions);
+        }
+    })
+});
 
 router.get('/private-tasks', verifyToken, (req, res) => {
     res.json([

@@ -1,17 +1,9 @@
 
-{{id}}
-<div class="row">
-    <div class="col-md-4" *ngFor="let task of privateTasks">
-        <div class="card">
-            <div class="card-body">
-                <h3>{{task.name}}</h3>
-                <p>{{task.description}}</p>
-            </div>
-            <div class="card-footer">
-                {{task.date | date: 'shortDate'}}
 
-              </div>
-        </div>
-    </div>
-</div>
+<h1>Bienvenido: {{user.id}}</h1>
+
+<br>
+
+<h2>Preguntas Respondidas</h2>
+
 <button type="button" routerLink="/tasks">ir a preguntas</button>
