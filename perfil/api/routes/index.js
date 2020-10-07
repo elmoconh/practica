@@ -19,14 +19,6 @@ router.get('/profile', auth, ctrlProfile.profileRead);
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 
-router.get('/questions', (req,res)=>{
-    qModel.find({}).exec(function(err,questions){
-        if(err){
-            console.log('no funciona'); 
-        }else{
-            res.json(questions);
-        }
-    })
-});
+
 
 module.exports = router;

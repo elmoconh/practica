@@ -113,7 +113,5 @@ export class AuthenticationService {
     return this.request("get", "profile");
   }
 
-  public getQuestion(): Observable<any> {
-    return this.request("post", 'question');
-  }
+
 }

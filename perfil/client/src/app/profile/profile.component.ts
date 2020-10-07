@@ -9,7 +9,7 @@ import { QuestionsService} from "../questions.service";
 })
 export class ProfileComponent implements OnInit {
   details: UserDetails;
-  tasks :{ID:string};
+  tasks ={id: String};
   
   constructor(
     private auth: AuthenticationService, 
@@ -26,28 +26,31 @@ export class ProfileComponent implements OnInit {
         console.error(err);
       }
     );
-    this.taskService.getTasks()
-      .subscribe(
-        
-        res => {
-          this.tasks = res;
-        },
-        err => console.log(err)
-      )
+    
   }
 
-  getQuestion(mensaje){
+
+  getHistorial(mensaje){
     if(mensaje== "null"){
-      
-      console.log(this.tasks);
-      
+       
       console.log("primera vez");
-      this.router.navigate(['/question/'+ this.tasks['Enunciado']+'/'+this.tasks['a']+'/'+this.tasks['b']+'/'+this.tasks['c']+'/'+this.tasks['d']+'/'+this.tasks['e']]);
+     this.getQuestion("00003");
     }else{
       console.log("pregunta 2");
     }
   }
+ getQuestion(id){
+      this.taskService.getTasks(id)
+      .subscribe(
+        
+        res => {
+          this.tasks = res;
+          console.log('pasa 2: ' + this.tasks['Enunciado'])
+          this.router.navigateByUrl('/question/'+ this.tasks['Enunciado']+'/'+ this.tasks['a']+'/'+ this.tasks['b'] +'/'+ this.tasks['c']+'/'+ this.tasks['d']+'/'+ this.tasks['e']);
+        },
+        err => console.log(err)
+      )
+ }
 
-  
 
 }
