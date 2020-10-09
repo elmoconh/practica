@@ -2,12 +2,12 @@
 <h1>{{question.enun}}</h1>
 
 <h4>opciones </h4>
-<input type="radio" id="Check2" value="Value1"  /> <label>a).-</label>{{question.a}} <br>
-<input type="radio" id="Check2" value="Value1"  /> <label>b).-</label>{{question.b}}<br>
-<input type="radio" id="Check2" value="Value1"  /> <label>c).-</label>{{question.c}}<br>
-<input type="radio" id="Check2" value="Value1"  /> <label>d).-</label>{{question.d}}<br>
-<input type="radio" id="Check2" value="Value1"  /> <label>e).-</label>{{question.e}}<br>
--->
+<input type="radio"  value="a"  > <label>a).-</label>{{question.a}} <br>
+<input type="radio"  value="b"  > <label>b).-</label>{{question.b}}<br>
+<input type="radio"  value="c"  > <label>c).-</label>{{question.c}}<br>
+<input type="radio"  value="d"  > <label>d).-</label>{{question.d}}<br>
+<input type="radio"  value="e"  > <label>e).-</label>{{question.e}}<br>
+
 <button type="submit"(click)="getHistorial(question?.id)" >Siguiente Pregunta</button>
 
 
