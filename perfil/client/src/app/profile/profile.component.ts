@@ -9,7 +9,7 @@ import { QuestionsService} from "../questions.service";
 })
 export class ProfileComponent implements OnInit {
   details: UserDetails;
-  tasks ={id: String};
+  tasks ={id: String, en: String};
   
   constructor(
     private auth: AuthenticationService, 
@@ -26,27 +26,36 @@ export class ProfileComponent implements OnInit {
         console.error(err);
       }
     );
-    
   }
 
 
   getHistorial(mensaje){
     if(mensaje== "null"){
        
-      console.log("primera vez");
-     this.getQuestion("00003");
+    console.log("primera vez");
+     this.getQuestion("00001");
     }else{
       console.log("pregunta 2");
     }
   }
- getQuestion(id){
+getQuestion(id){
       this.taskService.getTasks(id)
       .subscribe(
         
-        res => {
+        res  => {
           this.tasks = res;
           console.log('pasa 2: ' + this.tasks['Enunciado'])
-          this.router.navigateByUrl('/question/'+ this.tasks['Enunciado']+'/'+ this.tasks['a']+'/'+ this.tasks['b'] +'/'+ this.tasks['c']+'/'+ this.tasks['d']+'/'+ this.tasks['e']);
+          var r = this.tasks['Enunciado'];
+          var question = r.replace(" ", "%").replace(","," ");
+          console.log(question);
+          this.router.navigate(['/question/'+ 
+          this.tasks['ID']+'/'+
+          this.tasks['Enunciado']+'/'+
+          this.tasks['a']+'/'+
+          this.tasks['b']+'/'+
+          this.tasks['c']+'/'+
+          this.tasks['d']+'/'+
+          this.tasks['e']]);
         },
         err => console.log(err)
       )

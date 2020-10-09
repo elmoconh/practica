@@ -1,5 +1,4 @@
 require('./users');
-require('./Questions');
 const mongoose = require('mongoose');
 const dbURI = 'mongodb://localhost:27017/practica';
 
