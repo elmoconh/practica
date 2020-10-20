@@ -1,14 +1,47 @@
-<h1>{{question.id}}</h1>
-<h1>{{question.enun}}</h1>
+<div  style="border: 1px  solid #000000; width:1000px; height: 600px; align-content: initial;">
+    <div style="border: 1px  solid #000000; width:1000px; height: 100px" >
+        <h2>{{question.id}}.-{{question.enun}}</h2>
+     </div>
+    <div class="float-left" style="border: 1px  solid #000000; width:500px; height: 500px" >
+        <form>
+            <h2>opciones: </h2><br>
+            
+                <input type="radio"  name="option" value="a" (click)="option('a')"><label> a).-</label> {{question.a}}<br>
+                <input type="radio"  name="option" value="b" (click)="option('b')"><label> b).-</label> {{question.b}}<br>
+                <input type="radio"  name="option" value="c" (click)="option('c')"><label> c).-</label> {{question.c}}<br>
+                <input type="radio"  name="option" value="d" (click)="option('d')"><label> d).-</label> {{question.d}}<br>
+                <input type="radio"  name="option" value="e" (click)="option('e')"><label> e).-</label> {{question.e}}<br>
+            
+        </form>
+    </div>
 
-<h4>opciones </h4>
-<input type="radio"  value="a"  > <label>a).-</label>{{question.a}} <br>
-<input type="radio"  value="b"  > <label>b).-</label>{{question.b}}<br>
-<input type="radio"  value="c"  > <label>c).-</label>{{question.c}}<br>
-<input type="radio"  value="d"  > <label>d).-</label>{{question.d}}<br>
-<input type="radio"  value="e"  > <label>e).-</label>{{question.e}}<br>
+    <div class="float-right" style="border: 1px  solid #000000; width:480px; height: 500px" > 
+        <div class="btn btn-primary block">
+            <button type="button" (click)="pista('usada')"  class="btn btn-success" data-toggle="dropdown" > Pista <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>Acá hay una pista</li>
+                </ul>
+        </div><br>    
+       
+    </div>
+    <button margin="30px" class="btn btn-primary float-right" type="button" (click)="getHistorial(question?.id)" >Siguiente Pregunta</button>
 
-<button type="submit"(click)="getHistorial(question?.id)" >Siguiente Pregunta</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

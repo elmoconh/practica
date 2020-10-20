@@ -10,12 +10,10 @@ export interface UserDetails {
   name: string;
   exp: number;
   iat: number;
-  historial:string;
+  historial: string;
 }
 
-export interface question {
-  enunciado: string;
-}
+ 
 interface TokenResponse {
   token: string;
 }
@@ -26,6 +24,7 @@ export interface TokenPayload {
   name?: string;
   historial: string;
 }
+
 
 @Injectable({
   providedIn: "root"
@@ -49,8 +48,8 @@ export class AuthenticationService {
 
   private request(
     method: "post" | "get",
-    type: "login" | "register" | "profile" | "question" ,
-    user?: TokenPayload
+    type: "login" | "register" | "profile" | "question" | "historial",
+    user?: TokenPayload,
   ): Observable<any> {
     let base$;
 
@@ -112,6 +111,7 @@ export class AuthenticationService {
   public profile(): Observable<any> {
     return this.request("get", "profile");
   }
+  
 
 
 }

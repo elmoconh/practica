@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
     this.auth.profile().subscribe(
       user => {
         this.details = user;
+        console.log(this.details)
       },
       err => {
         console.error(err);
@@ -30,12 +31,23 @@ export class ProfileComponent implements OnInit {
 
 
   getHistorial(mensaje){
-    if(mensaje== "null"){
+    const histArr = mensaje;
+    var  ultReg = histArr[histArr.length -1] ;
+    console.log(histArr[histArr.length -1]);
+    var lng = ultReg.search("id");
+    console.log("ultimo Registro 1: "+ lng);
+    var id=ultReg.substring(lng);
+    var idQuest = id.replace("}]", "").replace("id", "").replace(":", "").replaceAll('"',"");
+    var numId = parseInt(idQuest, 10);
+    console.log("ultimo Registro: "+ (numId + 1));
+    if(mensaje == "null"){
        
-    console.log("primera vez");
-     this.getQuestion("00001");
+    console.log("No hay Historial");
+     this.getQuestion("1");
     }else{
-      console.log("pregunta 2");
+      console.log("Hay historial");
+      this.getQuestion(numId+1);
+
     }
   }
 getQuestion(id){
@@ -55,11 +67,10 @@ getQuestion(id){
           this.tasks['b']+'/'+
           this.tasks['c']+'/'+
           this.tasks['d']+'/'+
-          this.tasks['e']]);
+          this.tasks['e']+'/'+
+          this.tasks['Alternativacorrecta']]);
         },
         err => console.log(err)
       )
  }
-
-
 }

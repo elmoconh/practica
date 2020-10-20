@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "question/:id/:enu/:a/:b/:c/:d/:e", component: QuestionComponent, pathMatch: 'full' },
+  { path: "question/:id/:enu/:a/:b/:c/:d/:e/:res", component: QuestionComponent, pathMatch: 'full' },
 
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] }
 ];

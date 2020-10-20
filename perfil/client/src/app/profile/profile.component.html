@@ -1,25 +1,12 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h1 class="form-signin-heading">Tu perfil</h1>
+<H1>Bienvenido: {{ details?.name }}</H1>
 
-      <div class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Nombre</label>
-          <p class="form-control-static">{{ details?.name }}</p>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Correo</label>
-          <p class="form-control-static">{{ details?.email }}</p>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3 control-label">Historial</label>
-          <p class="form-control-static">{{ details?.historial }}</p>
-        </div>
-
-      </div>
-    </div>
-  </div>
- <!-- <button routerLink="/question"> Responder preguntas</button>-->
- <button (click)="getHistorial(details?.historial)">Ir a Preguntas </button>
+<H2>Tu Correo: {{ details?.email }}</H2>
+<h3>Ultima Pregunta contestada</h3>
+<div *ngFor="let historial of details.historial; let i = index ">
+ 
+  <span> Pregunta = {{i}} </span>
+ <!-- {{details.historial[i+1]}}-->
 </div>
+
+
+<button class="btn btn-warning" (click)="getHistorial(details?.historial)">Ir a Preguntas </button>

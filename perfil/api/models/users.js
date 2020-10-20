@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   historial: {
-    type: String,
+    type: Array,
   },
   hash: String,
   salt: String,

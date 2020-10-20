@@ -41,3 +41,9 @@ module.exports.login = (req, res) => {
     }
   })(req, res);
 };
+
+/*module.exports.historial = (req, res) => {
+    const q = req.body.id;
+
+ console.log("pasó por acá " + q);
+};*/
