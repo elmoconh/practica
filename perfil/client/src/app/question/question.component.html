@@ -1,48 +1,37 @@
 <div  style="border: 1px  solid #000000; width:1000px; height: 600px; align-content: initial;">
-    <div style="border: 1px  solid #000000; width:1000px; height: 100px" >
+    <div style="border: 1px  solid #000000; width:1000px; height: 100px; padding: 10px;" >
         <h2>{{question.id}}.-{{question.enun}}</h2>
      </div>
-    <div class="float-left" style="border: 1px  solid #000000; width:500px; height: 500px" >
+    <div class="float-left" style="border: 1px  solid #000000; width:500px; height: 500px; padding:50px;" >
         <form>
             <h2>opciones: </h2><br>
             
-                <input type="radio"  name="option" value="a" (click)="option('a')"><label> a).-</label> {{question.a}}<br>
+               <h3> <input type="radio"  name="option" value="a" (click)="option('a')"><label> a).-</label> {{question.a}}<br>
                 <input type="radio"  name="option" value="b" (click)="option('b')"><label> b).-</label> {{question.b}}<br>
                 <input type="radio"  name="option" value="c" (click)="option('c')"><label> c).-</label> {{question.c}}<br>
                 <input type="radio"  name="option" value="d" (click)="option('d')"><label> d).-</label> {{question.d}}<br>
                 <input type="radio"  name="option" value="e" (click)="option('e')"><label> e).-</label> {{question.e}}<br>
-            
+            </h3>
         </form>
     </div>
 
     <div class="float-right" style="border: 1px  solid #000000; width:480px; height: 500px" > 
-        <div class="btn btn-primary block">
-            <button type="button" (click)="pista('usada')"  class="btn btn-success" data-toggle="dropdown" > Pista <span class="caret"></span></button>
-                <ul class="dropdown-menu" role="menu">
-                    <li>Acá hay una pista</li>
-                </ul>
-        </div><br>    
-       
+        <div class="btn-group">
+            <button type="button" class="btn btn-danger">Pista</button>
+            <button type="button" (click)="pista('usada')"class="btn btn-danger dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <span class="sr-only">Ver pista</span>
+            </button>
+            <div class="dropdown-menu">
+             <a class="dropdown-item" href="#">Pista</a>
+            </div>
+        </div>
+
+        <div class="align-bottom" style="height: 100%;">
+        <button margin="30px" class="btn btn-primary float-right align-bottom" type="button" (click)="getHistorial(question?.id)" >Siguiente Pregunta</button>
+        <button margin="30px" class="btn btn-primary float-left align-bottom" type="button" (click)="getHistorial(question?.id)" >Pregunta Anterior</button>
+    </div>   
     </div>
-    <button margin="30px" class="btn btn-primary float-right" type="button" (click)="getHistorial(question?.id)" >Siguiente Pregunta</button>
 
+    
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

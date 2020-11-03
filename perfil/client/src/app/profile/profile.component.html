@@ -1,12 +1,15 @@
+
+<div style="margin: auto;border: 1 px solid #000000;padding: 10px;width: 50%; height: 50%;">
 <H1>Bienvenido: {{ details?.name }}</H1>
-
 <H2>Tu Correo: {{ details?.email }}</H2>
-<h3>Ultima Pregunta contestada</h3>
-<div *ngFor="let historial of details.historial; let i = index ">
- 
-  <span> Pregunta = {{i}} </span>
+<h3>Historial Preguntas</h3>
+
+<div *ngFor="let historial  of details?.historial;  ">
+<span><button  (click)="updQuest(historial)"> Pregunta = {{historial[50]}} </button></span>
+     
  <!-- {{details.historial[i+1]}}-->
+</div><br>
+
+<button class="btn btn-warning float-right" (click)="getHistorial(details?.historial)">Ir a Preguntas </button>
+
 </div>
-
-
-<button class="btn btn-warning" (click)="getHistorial(details?.historial)">Ir a Preguntas </button>

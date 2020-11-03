@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  getHistorial(mensaje){
+getHistorial(mensaje){
     const histArr = mensaje;
     var  ultReg = histArr[histArr.length -1] ;
     console.log(histArr[histArr.length -1]);
@@ -50,6 +50,19 @@ export class ProfileComponent implements OnInit {
 
     }
   }
+
+updQuest(id){
+ console.log(id);
+ var transId = id;
+ var serId = transId.search("id");
+ var newArr = id.substring(serId);
+ console.log(serId);
+ console.log(newArr);
+ var newID = newArr.replace("}]", "").replace("id", "").replace(":", "").replaceAll('"',"");
+ console.log(newID);
+ this.getQuestion(newID);
+}
+
 getQuestion(id){
       this.taskService.getTasks(id)
       .subscribe(
@@ -74,3 +87,4 @@ getQuestion(id){
       )
  }
 }
+

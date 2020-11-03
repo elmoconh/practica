@@ -1,0 +1,18 @@
+html,body{
+    background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    padding: 50px;
+    }
+
+
+.card{
+   height: auto;
+   margin: auto;
+   width: 500px;
+   padding: 10px;
+   background-color: rgba(0,0,0,0.5) !important;
+   color: white;
+}

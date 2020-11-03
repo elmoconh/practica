@@ -1,25 +1,12 @@
-body, html {
-    height: 100%;
+html,body{
+  background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: 'Numans', sans-serif;
+  padding: 10px;
   }
-  .bg {
-    /* The image used */
-    background: linear-gradient(90deg, rgba(241,240,255,1) 0%, rgba(24,188,255,1) 35%, rgba(0,212,255,1) 100%);
-  
-    /* Full height */
-    height: 100%;
-  
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    --bg-overlay-color: rgb(250, 250, 250);
-    --fill-layer-image-opacity: 1;
-    --fill-layer-background-media-position: fixed;
-    --fill-layer-background-media-pointer-events: none;
-    width: 100%;
-    --column-width: 980px;
-    --column-flex: 980;
-  }
+
 
   .home{
     border: 1em solid white;  
@@ -30,3 +17,16 @@ body, html {
     float: none;
     background: linear-gradient(90deg, rgba(241,240,255,1) 0%, rgba(24,188,255,1) 35%, rgba(0,212,255,1) 100%);
   }
+
+  .card{
+    height: auto;
+    margin: auto;
+    width: 400px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.5) !important;
+    }
+    
+    h1{
+  color: white;
+  font-size: 60px;  
+    }

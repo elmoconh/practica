@@ -46,9 +46,10 @@ export class QuestionComponent implements OnInit {
         e: this.activatedRoute.snapshot.params.e,
 
     };
-   this.corOp=this.activatedRoute.snapshot.params.res; 
-   this.pista("");
+  this.corOp=this.activatedRoute.snapshot.params.res; 
+  this.pista("");
   this.option("no contestada");
+  this.startTimer();
   }
 
 putHistorial(quest){
@@ -69,12 +70,9 @@ putHistorial(quest){
 getHistorial(mensaje){
     console.log(mensaje);
     this.putHistorial(mensaje);
-    if(mensaje== "1"){
-        this.nextQuestion("2");
-    }else{
-        this.nextQuestion("3");
-
-      }
+    var idNum = parseInt(mensaje);
+    console.log(idNum +1 );
+     this.nextQuestion(idNum+1);
     }
 
 option(opt){
@@ -100,6 +98,7 @@ option(opt){
 }    
       
 async nextQuestion(id){
+  console.log(id);
   this.taskService.getTasks(id).subscribe(
     res  => {
           this.tasks = res;
@@ -135,5 +134,20 @@ pista(mensaje){
         this.hist.pista = uso;
        }
 
-  }   
+  }  
+
+  time: number=1;
+  interval;
+
+startTimer() {
+    this.interval = setInterval(() => {
+      if(this.time > 0) {
+        this.time++;
+        this.hist.tiempo = this.time;
+
+      } 
+    },1000)
+  }
+
+
 }
