@@ -69,11 +69,11 @@ getQuestion(id){
         
         res  => {
           this.tasks = res;
-          console.log('pasa 2: ' + this.tasks['Enunciado'])
           var r = this.tasks['Enunciado'];
           var question = r.replace(" ", "%").replace(","," ");
           console.log(question);
-          this.router.navigate(['/question/'+ 
+          this.router.navigate(['/question/'+
+          this.details['email']+'/'+
           this.tasks['ID']+'/'+
           this.tasks['Enunciado']+'/'+
           this.tasks['a']+'/'+

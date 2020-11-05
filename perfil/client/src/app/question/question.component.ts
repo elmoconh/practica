@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Router}              from '@angular/router';
 import { QuestionsService} from "../questions.service";
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +12,9 @@ import { HistorialService } from "../historial.service";
 })
 export class QuestionComponent implements OnInit {
   
-  question: {id: string, 
+  question: {
+      us:string,
+      id: string, 
       enun: string
       a: string,
       b: string,
@@ -37,6 +39,7 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
    this.question ={
+        us: this.activatedRoute.snapshot.params.us,
         id: this.activatedRoute.snapshot.params.id,
         enun: this.activatedRoute.snapshot.params.enu,
         a: this.activatedRoute.snapshot.params.a,
@@ -50,6 +53,7 @@ export class QuestionComponent implements OnInit {
   this.pista("");
   this.option("no contestada");
   this.startTimer();
+
   }
 
 putHistorial(quest){
@@ -58,7 +62,7 @@ putHistorial(quest){
   this.questHist.push(this.hist);    
   console.log("Historial pregunta:  "+JSON.stringify(this.questHist));
   var userHistorial = JSON.stringify(this.questHist);
- this.auth.historial(userHistorial).subscribe(response => {
+ this.auth.historial(userHistorial, this.question.us).subscribe(response => {
     console.log(response);
       this.message ="actualizado";
               }, error => {
@@ -97,7 +101,7 @@ option(opt){
 
 }    
       
-async nextQuestion(id){
+nextQuestion(id){
   console.log(id);
   this.taskService.getTasks(id).subscribe(
     res  => {
@@ -105,6 +109,7 @@ async nextQuestion(id){
           console.log('pasa 2: ' + this.tasks['Enunciado'])
           var r = this.tasks['Enunciado'];
           this.router.navigateByUrl('/profile', {skipLocationChange: true}).then(()=>this.router.navigate(['/question/'+ 
+          this.question['us']+'/'+
           this.tasks['ID']+'/'+
           this.tasks['Enunciado']+'/'+
           this.tasks['a']+'/'+
@@ -136,18 +141,26 @@ pista(mensaje){
 
   }  
 
-  time: number=1;
+  time: number;
   interval;
 
-startTimer() {
-    this.interval = setInterval(() => {
-      if(this.time > 0) {
-        this.time++;
-        this.hist.tiempo = this.time;
+//tiempo en segundos 
 
+startTimer() {
+    this.time=0;
+    this.interval = setInterval(() => {
+     if(this.time >= 0) {
+        this.time++;
+        console.log(this.time);
+        this.hist.tiempo = this.time;
+          /*if(this.time%60==0){
+          alert("aún estás ???");
+        }*/
       } 
     },1000)
   }
 
-
+ngOnDestroy(){
+  this.startTimer();
+}
 }

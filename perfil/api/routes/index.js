@@ -21,11 +21,11 @@ router.post('/login' , ctrlAuth.login);
 
 
 //Historial
-router.post('/historial/:quest', (req, res) => {
+router.post('/historial/:quest/:user', (req, res) => {
   const  q = req.params.quest;
-  const user = "Helmer Morales "
+  const user = req.params.user;
   console.log("pasó por acá " + q + user);
- User.updateOne({email: "helmer.morales1@gmail.com"},{ $push:{historial: q}},function(err, res) {
+ User.updateOne({email: user},{ $push:{historial: q}},function(err, res) {
     if (err) throw err;
     console.log("Historial Actualizado");
   });

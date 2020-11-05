@@ -1,10 +1,10 @@
-<div  style="border: 1px  solid #000000; width:1000px; height: 600px; align-content: initial;">
+<div  style="border: 1px  solid #000000; width:1000px; height: 600px; align-content:center;">
     <div style="border: 1px  solid #000000; width:1000px; height: 100px; padding: 10px;" >
-        <h2>{{question.id}}.-{{question.enun}}</h2>
+        <h1>{{question.id}}.-{{question.enun}}</h1>
      </div>
     <div class="float-left" style="border: 1px  solid #000000; width:500px; height: 500px; padding:50px;" >
         <form>
-            <h2>opciones: </h2><br>
+            <h2>Opciones: </h2><br>
             
                <h3> <input type="radio"  name="option" value="a" (click)="option('a')"><label> a).-</label> {{question.a}}<br>
                 <input type="radio"  name="option" value="b" (click)="option('b')"><label> b).-</label> {{question.b}}<br>
@@ -26,12 +26,12 @@
              <a class="dropdown-item" href="#">Pista</a>
             </div>
         </div>
-
-        <div class="align-bottom" style="height: 100%;">
-        <button margin="30px" class="btn btn-primary float-right align-bottom" type="button" (click)="getHistorial(question?.id)" >Siguiente Pregunta</button>
-        <button margin="30px" class="btn btn-primary float-left align-bottom" type="button" (click)="getHistorial(question?.id)" >Pregunta Anterior</button>
-    </div>   
+   
     </div>
 
     
+    <div class="align-bottom" style="height: 100%;">
+        <button margin="30px" class="btn btn-primary float-right" type="button" (click)="getHistorial(question?.id)" ><h2>Siguiente Pregunta</h2></button>
+        <button margin="30px" class="btn btn-primary float-left" type="button" (click)="getHistorial(question?.id)" ><h2>Pregunta Anterior</h2></button>
+    </div>
 </div>
