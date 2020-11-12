@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Router}              from '@angular/router';
 import { QuestionsService} from "../questions.service";
 import { ActivatedRoute } from '@angular/router';
@@ -20,10 +20,11 @@ export class QuestionComponent implements OnInit {
       b: string,
       c: string,
       d: string,
-      e: string
+      e: string,  
+      corOp: string;
+
         };
   message = '';
-  corOp: string;
 
   tasks ={id: String};
   questHist : Array<Question> =[];
@@ -33,7 +34,7 @@ export class QuestionComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router:Router,
     private taskService: QuestionsService,
-    private auth: HistorialService
+    private usHist: HistorialService
 
   ) { }
 
@@ -47,12 +48,11 @@ export class QuestionComponent implements OnInit {
         c: this.activatedRoute.snapshot.params.c,
         d: this.activatedRoute.snapshot.params.d,
         e: this.activatedRoute.snapshot.params.e,
-
+      corOp: this.activatedRoute.snapshot.params.res
     };
-  this.corOp=this.activatedRoute.snapshot.params.res; 
   this.pista("");
   this.option("no contestada");
-  this.startTimer();
+ //this.startTimer();
 
   }
 
@@ -62,7 +62,7 @@ putHistorial(quest){
   this.questHist.push(this.hist);    
   console.log("Historial pregunta:  "+JSON.stringify(this.questHist));
   var userHistorial = JSON.stringify(this.questHist);
- this.auth.historial(userHistorial, this.question.us).subscribe(response => {
+  this.usHist.historial(userHistorial, this.question.us).subscribe(response => {
     console.log(response);
       this.message ="actualizado";
               }, error => {
@@ -81,8 +81,8 @@ getHistorial(mensaje){
 
 option(opt){
  var res;  
- console.log(opt   + this.corOp);
-  if(opt == this.corOp){
+ console.log(opt   + this.question['corOp']);
+  if(opt == this.question['corOp']){
     res = "True";
     console.log("respuesta correcta");
     this.hist.resultado = res;
@@ -102,29 +102,34 @@ option(opt){
 }    
       
 nextQuestion(id){
+   if(id%3==0){
+     this.router.navigateByUrl('/poll/'+this.question['us']);
+   }else{
   console.log(id);
   this.taskService.getTasks(id).subscribe(
     res  => {
           this.tasks = res;
           console.log('pasa 2: ' + this.tasks['Enunciado'])
           var r = this.tasks['Enunciado'];
-          this.router.navigateByUrl('/profile', {skipLocationChange: true}).then(()=>this.router.navigate(['/question/'+ 
+          this.router.navigateByUrl('/profile', {skipLocationChange: true}).then(()=>
+          
+          this.router.navigate(['/question/'+ 
           this.question['us']+'/'+
           this.tasks['ID']+'/'+
           this.tasks['Enunciado']+'/'+
           this.tasks['a']+'/'+
           this.tasks['b']+'/'+
-          this.tasks['c']+'/'+
+          this.tasks['c']+'/'+encodeURI(
           this.tasks['d']+'/'+
           this.tasks['e']+'/'+          
           this.tasks['Alternativacorrecta']
           
-          ]));
+          )]));
 
         },
         err => console.log(err)
       )
-
+   }
 
  }
 pista(mensaje){
@@ -141,26 +146,23 @@ pista(mensaje){
 
   }  
 
-  time: number;
+  time: number=0;
   interval;
 
 //tiempo en segundos 
 
-startTimer() {
-    this.time=0;
+/*startTimer() {
     this.interval = setInterval(() => {
-     if(this.time >= 0) {
+      if(this.time >= 0) {
         this.time++;
         console.log(this.time);
         this.hist.tiempo = this.time;
           /*if(this.time%60==0){
           alert("aún estás ???");
-        }*/
+        }
       } 
     },1000)
   }
+*/
 
-ngOnDestroy(){
-  this.startTimer();
-}
 }

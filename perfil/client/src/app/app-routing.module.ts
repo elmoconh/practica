@@ -5,6 +5,8 @@ import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { ProfileComponent } from "./profile/profile.component";
 import {QuestionComponent} from './question/question.component';
+import {PollComponent} from './poll/poll.component';
+
 import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
@@ -12,7 +14,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "question/:us/:id/:enu/:a/:b/:c/:d/:e/:res", component: QuestionComponent, pathMatch: 'full' },
-
+  { path:"poll/:us", component: PollComponent, pathMatch: 'full'},
   { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] }
 ];
 

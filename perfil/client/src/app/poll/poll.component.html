@@ -1,0 +1,23 @@
+<div  style="margin: auto;text-align: center; width: 100%;height: 1000px;">
+    <div style="border: 1px  solid #000000;  height: 100px;" >
+        <h1>Dinos !!!: </h1>
+     </div>
+
+     <h2>¿Qué te parecieron hasta ahora las preguntas ? </h2><br>
+
+        <form>
+            <h3>     
+                <div class="float-left" style="text-align: left; width:100%; height: 100px; padding-left:45%;" >
+                    <input type="radio"  name="option" value="good" (click)="getOpinion('good')" ><label>Buenas</label> <br>
+                    <input type="radio"  name="option" value="regular" (click)="getOpinion('regular')"><label>Regulares</label><br>
+                    <input type="radio"  name="option" value="bad" (click)="getOpinion('bad')"><label>Malas</label> 
+                </div>
+            </h3>
+      
+        </form>  
+        <label><h3>Dejanos tu opinión(opcional)</h3></label><br>
+            <textarea name="opinion" id="" cols="70" rows="10" [(ngModel)]="coment" ></textarea><br>
+    
+    <br><button margin="30px" class="btn btn-primary float-center" type="button" (click)="saveOpinion()"  ><h3>Responder y  volver a los ejercicios</h3></button> <br>
+    <br><button margin="50px" class="btn btn-primary float-center" type="button"  ><h2>Responder y Salir</h2></button>
+</div>

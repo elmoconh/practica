@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { QuestionComponent } from './question/question.component';
+import { PollComponent } from './poll/poll.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { QuestionComponent } from './question/question.component';
     ProfileComponent,
     LoginComponent,
     HomeComponent,
-    QuestionComponent
+    QuestionComponent,
+    PollComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
