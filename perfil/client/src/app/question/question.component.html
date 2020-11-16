@@ -1,4 +1,4 @@
-<div  style="border: 1px  solid #000000; width:1000px; height: 600px; align-content:center;">
+<div style="border: 1px  solid #000000; width:1000px; height: 600px; align-content:center;">
     <div style="border: 1px  solid #000000; width:1000px; height: 100px; padding: 10px;" >
         <h1>{{question.id}}.-{{question.enun}}</h1>
      </div>
@@ -31,7 +31,9 @@
 
     
     <div class="align-bottom" style="height: 100%;">
-        <button margin="30px" class="btn btn-primary float-right" type="button" (click)="getHistorial(question?.id)" ><h2>Siguiente Pregunta</h2></button>
-        <button margin="30px" class="btn btn-primary float-left" type="button" (click)="getHistorial(question?.id)" ><h2>Pregunta Anterior</h2></button>
+        <button margin="30px" class="btn btn-primary float-right" type="button" (click)="action(question?.id, display)" ><h2>Siguiente Pregunta</h2></button>
+        <button margin="30px" class="btn btn-primary float-left" type="button" (click)="action(question?.id, display)" ><h2>Pregunta Anterior</h2></button>
     </div>
 </div>
+
+

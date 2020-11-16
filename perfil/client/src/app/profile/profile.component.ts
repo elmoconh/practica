@@ -31,16 +31,22 @@ export class ProfileComponent implements OnInit {
 
 
 getHistorial(mensaje){
-    const histArr = mensaje;
-    var  ultReg = histArr[histArr.length -1] ;
-    console.log(histArr[histArr.length -1]);
+    const histArr =mensaje;
+    var  ultReg =  JSON.stringify(histArr[histArr.length -1] );
+    console.log(ultReg['pista']);
     var lng = ultReg.search("id");
     console.log("ultimo Registro 1: "+ lng);
     var id=ultReg.substring(lng);
-    var idQuest = id.replace("}]", "").replace("id", "").replace(":", "").replaceAll('"',"");
+    console.log(id);
+    
+    var idQuest = id.replace("}", "").replace("id", "").replace(":", " ").replace(/['"]+/g,"");
+    console.log(idQuest);
+
     var numId = parseInt(idQuest, 10);
+    console.log(numId);
     console.log("ultimo Registro: "+ (numId + 1));
-    if(mensaje == "null"){
+      console.log("historial" + mensaje.length);
+    if(mensaje.length ==1){
        
     console.log("No hay Historial");
      this.getQuestion("1");
@@ -52,15 +58,16 @@ getHistorial(mensaje){
   }
 
 updQuest(id){
- console.log(id);
- var transId = id;
- var serId = transId.search("id");
- var newArr = id.substring(serId);
- console.log(serId);
- console.log(newArr);
- var newID = newArr.replace("}]", "").replace("id", "").replace(":", "").replaceAll('"',"");
- console.log(newID);
- this.getQuestion(newID);
+  const idQuest =id;
+  console.log(id);
+  var transId = JSON.stringify(idQuest);
+  var serId = transId.search("id");
+  console.log(serId);
+  var newArr = transId.substring(serId);
+  console.log(newArr);
+  var newID = newArr.replace("}", "").replace("id", "").replace(":", "").replace(/['"]+/g,"");
+  console.log(newID);
+  this.getQuestion(newID);
 }
 
 getQuestion(id){

@@ -5,9 +5,8 @@
 <h3>Historial Preguntas</h3>
 
 <div *ngFor="let historial  of details?.historial;  ">
-<span><button  (click)="updQuest(historial)"> Pregunta = {{historial[50]}} </button></span>
+<span><button  (click)="updQuest(historial)"> Pregunta = {{historial.id}} </button></span>
      
- <!-- {{details.historial[i+1]}}-->
 </div><br>
 
 <button class="btn btn-warning float-right" (click)="getHistorial(details?.historial)">Ir a Preguntas </button>

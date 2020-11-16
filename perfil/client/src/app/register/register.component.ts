@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { AuthenticationService, TokenPayload } from "../authentication.service";
 import { Router } from "@angular/router";
-
+import {Question} from '../question/question';
 @Component({
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.css"]
@@ -11,7 +11,7 @@ export class RegisterComponent {
     email: "",
     name: "",
     password: "",
-    historial: "null"
+    historial: ""
   };
 
   constructor(private auth: AuthenticationService, private router: Router) {}

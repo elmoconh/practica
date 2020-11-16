@@ -11,8 +11,12 @@ import { HistorialService } from "../historial.service";
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-  
-  question: {
+time : number = 0;
+intervalId : number;
+display ;
+interval;
+
+question: {
       us:string,
       id: string, 
       enun: string
@@ -30,7 +34,7 @@ export class QuestionComponent implements OnInit {
   questHist : Array<Question> =[];
   hist = new Question();
 
-  constructor(    
+constructor(    
     private activatedRoute: ActivatedRoute,
     private router:Router,
     private taskService: QuestionsService,
@@ -38,7 +42,7 @@ export class QuestionComponent implements OnInit {
 
   ) { }
 
-  ngOnInit() {
+ngOnInit() {
    this.question ={
         us: this.activatedRoute.snapshot.params.us,
         id: this.activatedRoute.snapshot.params.id,
@@ -52,10 +56,11 @@ export class QuestionComponent implements OnInit {
     };
   this.pista("");
   this.option("no contestada");
- //this.startTimer();
-
+  this.hist.us = this.activatedRoute.snapshot.params.us;
+  this.startTimer();
   }
 
+//guardado en el historial del usuario
 putHistorial(quest){
   
   this.hist.id = quest;
@@ -71,14 +76,17 @@ putHistorial(quest){
     );
 }
 
-getHistorial(mensaje){
-    console.log(mensaje);
+//Tomar valores del historial
+getHistorial(mensaje, tiempo){
+    console.log("segundos: "+tiempo);
+    this.hist.tiempo = tiempo;
     this.putHistorial(mensaje);
     var idNum = parseInt(mensaje);
     console.log(idNum +1 );
-     this.nextQuestion(idNum+1);
-    }
+    this.nextQuestion(idNum+1);
+}
 
+//Opciones pregunta
 option(opt){
  var res;  
  console.log(opt   + this.question['corOp']);
@@ -91,16 +99,14 @@ option(opt){
     res = "False";
      console.log("respuesta Incorrecta");
      this.hist.resultado = res;
-
   }
-   if(opt == "no contestada"){
+  if(opt == "no contestada"){
     res = "No contestada";
     this.hist.resultado = res;
    }
-  
-
 }    
-      
+
+//Siguiente Pregunta     
 nextQuestion(id){
    if(id%3==0){
      this.router.navigateByUrl('/poll/'+this.question['us']);
@@ -130,8 +136,9 @@ nextQuestion(id){
         err => console.log(err)
       )
    }
+}
 
- }
+ //Verificación de uso de la pista
 pista(mensaje){
   var uso;
   if(mensaje){
@@ -142,27 +149,39 @@ pista(mensaje){
          uso = 'False'
         console.log(' pista ' + uso);
         this.hist.pista = uso;
-       }
+      }
+}  
 
-  }  
-
-  time: number=0;
-  interval;
 
 //tiempo en segundos 
-
-/*startTimer() {
+startTimer() {   
     this.interval = setInterval(() => {
-      if(this.time >= 0) {
+      if (this.time === 0) {
         this.time++;
-        console.log(this.time);
-        this.hist.tiempo = this.time;
-          /*if(this.time%60==0){
-          alert("aún estás ???");
-        }
-      } 
-    },1000)
+      } else {
+        this.time++;
+      }
+      this.display=this.transform( this.time)
+      console.log(this.display);
+      if(this.display%15==0){
+        window.alert("Sigues Ahí ?");
+      }
+    }, 1000);  
+    
   }
-*/
+
+  transform(value: number): number {
+       const minutes: number = Math.floor(value);
+       return minutes;
+  }
+   pauseTimer() {
+    clearTimeout(this.interval);
+  }
+
+action(mensaje, tiempo){
+  this.getHistorial(mensaje, tiempo);
+  this.pauseTimer();  
+}
+
 
 }

@@ -11,7 +11,7 @@ export class HistorialService {
     constructor(private http: HttpClient) { }
 
     public historial(quest, user){
-     console.log("pasa historial " + quest+ user);
+     console.log("pasa historial " + quest);
     return this.http.post(`${this.URL}/historial/${quest}/${user}`, quest);
 
   }

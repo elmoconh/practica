@@ -7,7 +7,12 @@ module.exports.register = (req, res) => {
 
   user.name = req.body.name;
   user.email = req.body.email;
-  user.historial = req.body.historial;
+  user.historial = {pista:" ",
+                    resultado:" ",
+                    us:" ",
+                    tiempo:0,
+                    id:"0"
+                    };
   
   user.setPassword(req.body.password);
 

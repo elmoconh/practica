@@ -5,7 +5,7 @@ const jwt = require('express-jwt');
 const router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-
+//const Historial = mongoose.model('historial');
 const auth = jwt({
   secret: 'MY_SECRET',
   userProperty: 'payload'
@@ -24,8 +24,10 @@ router.post('/login' , ctrlAuth.login);
 router.post('/historial/:quest/:user', (req, res) => {
   const  q = req.params.quest;
   const user = req.params.user;
-  console.log("pasó por acá " + q + user);
- User.updateOne({email: user},{ $push:{historial: q}},function(err, res) {
+  console.log("pasó por acá " + q);
+  const hist = JSON.parse(q);
+  
+ User.updateOne({email: user},{ $push:{historial:hist}},function(err, res) {
     if (err) throw err;
     console.log("Historial Actualizado");
   });
