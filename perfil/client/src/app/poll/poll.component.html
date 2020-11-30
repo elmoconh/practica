@@ -1,6 +1,6 @@
 <div  style="margin: auto;text-align: center; width: 100%;height: 1000px;">
-    <div style="border: 1px  solid #000000;  height: 100px;" >
-        <h1>Dinos !!!: </h1>
+    <div style="padding:10px; height: 100px;" >
+        <h1>Dinos {{ details?.email }} !!!: </h1>
      </div>
 
      <h2>¿Qué te parecieron hasta ahora las preguntas ? </h2><br>
@@ -15,9 +15,8 @@
             </h3>
       
         </form>  
-        <label><h3>Dejanos tu opinión(opcional)</h3></label><br>
-            <textarea name="opinion" id="" cols="70" rows="10" [(ngModel)]="coment" ></textarea><br>
+        
     
-    <br><button margin="30px" class="btn btn-primary float-center" type="button" (click)="saveOpinion()"  ><h3>Responder y  volver a los ejercicios</h3></button> <br>
-    <br><button margin="50px" class="btn btn-primary float-center" type="button"  ><h2>Responder y Salir</h2></button>
+    <br><button margin="30px" class="btn btn-primary float-center" type="button"   (click)="getHistorial(details?.historial)"><h3>Responder y  volver a los ejercicios</h3></button> <br>
+    <br><button margin="50px" class="btn btn-primary float-center" type="button"  routerLink="/profile"><h2>Responder y Salir</h2></button>
 </div>

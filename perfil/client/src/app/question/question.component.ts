@@ -34,6 +34,8 @@ question: {
   questHist : Array<Question> =[];
   hist = new Question();
 
+
+
 constructor(    
     private activatedRoute: ActivatedRoute,
     private router:Router,
@@ -84,6 +86,11 @@ getHistorial(mensaje, tiempo){
     var idNum = parseInt(mensaje);
     console.log(idNum +1 );
     this.nextQuestion(idNum+1);
+    //TimeStamp Historial
+    const current = new Date("MM/DD/YYYY HH:mm:ss");
+
+    console.log("tiempo: "+ current);
+    
 }
 
 //Opciones pregunta
@@ -115,10 +122,8 @@ nextQuestion(id){
   this.taskService.getTasks(id).subscribe(
     res  => {
           this.tasks = res;
-          console.log('pasa 2: ' + this.tasks['Enunciado'])
           var r = this.tasks['Enunciado'];
           this.router.navigateByUrl('/profile', {skipLocationChange: true}).then(()=>
-          
           this.router.navigate(['/question/'+ 
           this.question['us']+'/'+
           this.tasks['ID']+'/'+
@@ -174,14 +179,22 @@ startTimer() {
        const minutes: number = Math.floor(value);
        return minutes;
   }
-   pauseTimer() {
+   stopTimer() {
     clearTimeout(this.interval);
   }
 
-action(mensaje, tiempo){
-  this.getHistorial(mensaje, tiempo);
-  this.pauseTimer();  
-}
+action(question, tiempo, mensaje){
+  console.log(mensaje);
+  if(mensaje == 'before'){
+      question=question-1;
+      console.log("pregunta numero: " +question);
+      this.getHistorial(question-1, tiempo);
+        this.stopTimer();  
 
+  }else{
 
+    this.getHistorial(question, tiempo);
+    this.stopTimer();  
+    } 
+  }
 }

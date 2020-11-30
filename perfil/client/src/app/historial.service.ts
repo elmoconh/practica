@@ -15,4 +15,9 @@ export class HistorialService {
     return this.http.post(`${this.URL}/historial/${quest}/${user}`, quest);
 
   }
+    public historialOpinion(op, user){
+     console.log("pasa historial " + op+user);
+    return this.http.post(`${this.URL}/historialOpinion/${op}/${user}`, op);
+
+  }
 }

@@ -1,14 +1,10 @@
 
-<div style="margin: auto;border: 1 px solid #000000;padding: 10px;width: 50%; height: 50%;">
-<H1>Bienvenido: {{ details?.name }}</H1>
-<H2>Tu Correo: {{ details?.email }}</H2>
-<h3>Historial Preguntas</h3>
+<div style="margin: 10%;border: 1 px solid #000000;padding: 10px;width: 100%; height: 50%;">
+<h1>Bienvenido: {{ details?.name }}</h1>
+<h2>Tu Correo: {{ details?.email }}</h2>
 
-<div *ngFor="let historial  of details?.historial;  ">
-<span><button  (click)="updQuest(historial)"> Pregunta = {{historial.id}} </button></span>
-     
-</div><br>
-
-<button class="btn btn-warning float-right" (click)="getHistorial(details?.historial)">Ir a Preguntas </button>
-
+<h3>¿Que te gustaría hacer?</h3>
+<br><button  class="btn btn-primary" routerLink="/historial/{{details?.email}}"><h4> Ver mi Historial</h4> </button>
+<br><button   class="btn btn-primary" style="margin-top: 2px;" (click)="getHistorial(details?.historial)"><h4>Seguir contestando Preguntas</h4> </button>
 </div>
+

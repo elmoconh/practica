@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { QuestionComponent } from './question/question.component';
 import { PollComponent } from './poll/poll.component';
+import { HistorialComponent } from './historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PollComponent } from './poll/poll.component';
     LoginComponent,
     HomeComponent,
     QuestionComponent,
-    PollComponent
+    PollComponent,
+    HistorialComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

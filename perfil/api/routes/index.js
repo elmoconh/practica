@@ -31,7 +31,25 @@ router.post('/historial/:quest/:user', (req, res) => {
     if (err) throw err;
     console.log("Historial Actualizado");
   });
+
+
 });
+
+
+
+router.post('/historialOpinion/:quest/:user', (req, res) => {
+  const  q = req.params.quest;
+  const user = req.params.user;
+  console.log("pasó por acá " + q + user);
+  const hist ={'opinion:': q};
+
+ // User.finOne({user})
+ User.updateOne({email: user},{ $push:{historial:hist}},function(err, res) {
+    if (err) throw err;
+    console.log("Historial Actualizado");
+  });
+
+})
 
 
 module.exports = router;

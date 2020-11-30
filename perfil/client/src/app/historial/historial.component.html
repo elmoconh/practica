@@ -1,0 +1,21 @@
+<br>
+<h1>Hola !!!!! {{details?.name}}</h1>
+<h2>Este es tu historial</h2>
+<table *ngFor="let historial  of details?.historial;  ">
+
+    <thead>
+            <tr>
+                <th>Pregunta</th>
+                <th>Estado</th>
+                <th>Opción</th>
+
+            </tr>
+            </thead>
+            <tr>
+
+   <td> <span><a  (click)="updQuest(historial)"> {{historial.id}} </a></span></td>
+   <td> <span><a  (click)="updQuest(historial)"> {{historial.resultado}} </a></span></td>
+   <td> <span><button  (click)="updQuest(historial)"> Volver a Contestar </button></span></td>
+
+</tr>
+</table>
